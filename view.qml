@@ -11,6 +11,23 @@ Rectangle {
         return x.toString().replace('.webcam.jpg', '.desktop.jpg');
     }
 
+    states: [
+        State {
+            name: "AboutVisible"; when: aboutbox.visible
+            PropertyChanges {
+                target: imageGrid; enabled: false
+
+            }
+        }
+    ]
+
+   /* About {
+        id:aboutbox
+        visible: true
+        x: 100
+        y: 100
+    }*/
+
     Rectangle {
         id: menu
         color: "grey"
@@ -225,11 +242,12 @@ Rectangle {
         height: parent.height - menu.height
         y: menu.height
 
-
         MouseArea {
             id: desktopElementMouseArea
             anchors.fill: parent
-            onClicked: { desktopElement.zoom = !desktopElement.zoom;}
+            onClicked: {
+                desktopElement.zoom = !desktopElement.zoom;
+            }
         }
 
         states: [
@@ -249,8 +267,7 @@ Rectangle {
 
         transitions: [
             Transition {
-                NumberAnimation { properties: "opacity, y"; duration: 500; easing.type: Easing.InOutQuad}
-                NumberAnimation { properties: "width, height"; duration: 500; easing.type: Easing.InOutQuad}
+                NumberAnimation { properties: "width, height, opacity, y"; duration: 500; easing.type: Easing.InOutQuad}
             }
         ]
     }

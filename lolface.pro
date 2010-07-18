@@ -13,4 +13,5 @@ FORMS +=
 unix:LIBS += -lX11
 QT += declarative
 RESOURCES += resources.qrc
-OTHER_FILES += view.qml
+OTHER_FILES += view.qml \
+    About.qml
