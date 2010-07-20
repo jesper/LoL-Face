@@ -13,20 +13,24 @@ Rectangle {
 
     states: [
         State {
-            name: "AboutVisible"; when: aboutbox.visible
-            PropertyChanges {
-                target: imageGrid; enabled: false
-
-            }
+            name: "AboutVisible"; when: aboutbox.shown
+            PropertyChanges { target: imageGrid; enabled: false }
+            PropertyChanges { target: aboutbox; opacity: 0.8}
         }
     ]
 
-   /* About {
+    transitions: [
+        Transition {
+            NumberAnimation { properties: "opacity"; duration: 500; easing.type: Easing.InOutQuad }
+        }
+    ]
+
+    About {
         id:aboutbox
-        visible: true
         x: 100
         y: 100
-    }*/
+        shown: true
+    }
 
     Rectangle {
         id: menu
@@ -37,12 +41,47 @@ Rectangle {
 
         gradient: Gradient {
 
-            GradientStop { position: 0.06; color: "darkgrey" }
-            GradientStop { position: 0.30; color: "grey" }
-            GradientStop { position: 0.94; color: "darkgrey" }
+            GradientStop { position: 0; color: "darkgrey" }
+            GradientStop { position: 0.95; color: "grey" }
+            GradientStop { position: 1.1; color: "darkgrey" }
 
         }
 
+        Image {
+            id: aboutButton
+            source: "/images/about.svg"
+            sourceSize.width: 60
+            sourceSize.height: 60
+            width: 60
+            height: 60
+            x: parent.width-width-quitButton.width
+            y: 0
+            z: 9
+
+            MouseArea {
+                id: aboutButtonMouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                    aboutbox.shown = !aboutbox.shown;
+                }
+
+            }
+            states: [
+                State {
+                    name: "Hovered"; when: aboutButtonMouseArea.containsMouse
+                    PropertyChanges { target: aboutButton; sourceSize.width: 72; sourceSize.height:72; scale: 1.2;}
+                }
+            ]
+
+
+            transitions: [
+                Transition {
+                    NumberAnimation { properties: "scale"; duration: 1000; easing.type: Easing.OutElastic }
+                }
+            ]
+
+        }
 
         Image {
             id: quitButton

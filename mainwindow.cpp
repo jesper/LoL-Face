@@ -25,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent)
     m_imageModel = new QStandardItemModel(this);
     populateImageModel();
 
-    setGeometry(0, 0, 800, 600);
+    setFixedSize(800, 600);
 
     m_qmlView = new QDeclarativeView(this);
 
@@ -50,13 +50,18 @@ MainWindow::MainWindow(QWidget *parent)
 
     m_sysTray = new QSystemTrayIcon(this);
     setNeutralTrayIcon();
-    connect(m_sysTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(show()));
+    connect(m_sysTray, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(sysTrayClicked()));
     m_sysTray->show();
 }
 
 MainWindow::~MainWindow()
 {
     delete m_sysTray;
+}
+
+void MainWindow::sysTrayClicked()
+{
+    setVisible(!isVisible());
 }
 
 void MainWindow::quit()

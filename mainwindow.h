@@ -45,6 +45,7 @@ private:
 private slots:
     void keylogger_keypress(QString key);
     void setNeutralTrayIcon();
+    void sysTrayClicked();
 
 signals:
     void newImage(QString path);
