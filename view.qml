@@ -29,7 +29,6 @@ Rectangle {
         id:aboutbox
         x: 100
         y: 100
-        shown: true
     }
 
     Rectangle {
@@ -175,7 +174,7 @@ Rectangle {
 
         Image {
             id: faceButtonElement
-            source: "/images/happy.png"
+            source: "/images/happy.svg"
             sourceSize.height: 60
             sourceSize.width: 60
             height: 60

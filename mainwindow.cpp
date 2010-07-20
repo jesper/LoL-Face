@@ -93,7 +93,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::setNeutralTrayIcon()
 {
-    m_sysTray->setIcon(QIcon(":images/neutral.png"));
+    m_sysTray->setIcon(QIcon(":images/neutral.svg"));
 }
 
 void MainWindow::showSysTrayUsage()
@@ -109,7 +109,7 @@ void MainWindow::showSysTrayUsage()
 
 void MainWindow::lolFace()
 {
-    m_sysTray->setIcon(QIcon(":images/happy.png"));
+    m_sysTray->setIcon(QIcon(":images/happy.svg"));
     QTimer::singleShot(TIMEOUT, this, SLOT(setNeutralTrayIcon()));
 
     // Grabbing the entire desktop, and not just the current window, incase something off-window made you LoL

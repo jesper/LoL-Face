@@ -23,7 +23,7 @@
       <value type="QString">view.qml</value>
      </valuelist>
      <value key="ProjectExplorer.ProcessStep.Command" type="QString">/usr/bin/touch</value>
-     <value key="ProjectExplorer.ProcessStep.Enabled" type="bool">true</value>
+     <value key="ProjectExplorer.ProcessStep.Enabled" type="bool">false</value>
      <value key="ProjectExplorer.ProcessStep.WorkingDirectory" type="QString">/home/jesper/src/lolface</value>
      <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">QML Hack</value>
      <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">ProjectExplorer.ProcessStep</value>

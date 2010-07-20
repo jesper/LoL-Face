@@ -1,11 +1,11 @@
 <RCC>
     <qresource prefix="/images">
-        <file>happy.png</file>
-        <file>neutral.png</file>
         <file>back.svg</file>
         <file>desktop.svg</file>
         <file>quit.svg</file>
         <file>about.svg</file>
+        <file>happy.svg</file>
+        <file>neutral.svg</file>
     </qresource>
     <qresource prefix="/qml">
         <file>view.qml</file>
