@@ -12,6 +12,8 @@ Rectangle {
 
     property alias titletext: titleText.text
     property alias bodytext: bodyText.text
+    property alias contentsX: bodyText.mappedX
+    property alias contentsY: bodyText.mappedY
 
 
     Rectangle {
@@ -35,7 +37,10 @@ Rectangle {
             id: bodyText
             height: parent.height
             width: parent.width
+            x: 0
             y: titleText.height + 15
+            property int mappedX : parent.x + x
+            property int mappedY : parent.y + y
             color: "white"
             wrapMode: Text.WordWrap
             font.pointSize: 11
