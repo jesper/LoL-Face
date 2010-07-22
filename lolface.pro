@@ -14,4 +14,6 @@ unix:LIBS += -lX11
 QT += declarative
 RESOURCES += resources.qrc
 OTHER_FILES += view.qml \
-    About.qml
+    About.qml \
+    Configure.qml \
+    Dialog.qml

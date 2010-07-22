@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[])
 {
-    QApplication::setGraphicsSystem("opengl");
+    QApplication::setGraphicsSystem("raster");
     QApplication app(argc, argv);
     MainWindow w;
     w.show();

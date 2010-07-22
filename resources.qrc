@@ -6,9 +6,12 @@
         <file>about.svg</file>
         <file>happy.svg</file>
         <file>neutral.svg</file>
+        <file>configure.svg</file>
     </qresource>
     <qresource prefix="/qml">
         <file>view.qml</file>
         <file>About.qml</file>
+        <file>Configure.qml</file>
+        <file>Dialog.qml</file>
     </qresource>
 </RCC>

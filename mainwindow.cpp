@@ -34,8 +34,6 @@ MainWindow::MainWindow(QWidget *parent)
     m_qmlContext->setContextProperty("cplusplus", this);
     m_qmlView->setSource(QUrl("qrc:qml/view.qml"));
 
-
-    m_qmlView->setResizeMode(QDeclarativeView::SizeRootObjectToView);
     m_qmlView->show();
 
 

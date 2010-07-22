@@ -13,9 +13,14 @@ Rectangle {
 
     states: [
         State {
-            name: "AboutVisible"; when: aboutbox.shown
+            name: "AboutVisible"; when: about.shown
             PropertyChanges { target: imageGrid; enabled: false }
-            PropertyChanges { target: aboutbox; opacity: 0.8}
+            PropertyChanges { target: about; opacity: 0.8}
+        },
+        State {
+            name: "ConfigureVisible"; when: configure.shown
+            PropertyChanges { target: imageGrid; enabled: false }
+            PropertyChanges { target: configure; opacity: 0.8}
         }
     ]
 
@@ -26,9 +31,15 @@ Rectangle {
     ]
 
     About {
-        id:aboutbox
-        x: 100
-        y: 100
+        id:about
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+    }
+
+    Configure {
+        id:configure
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
     }
 
     Rectangle {
@@ -62,7 +73,7 @@ Rectangle {
                 anchors.fill: parent
                 hoverEnabled: true
                 onClicked: {
-                    aboutbox.shown = !aboutbox.shown;
+                    about.shown = !about.shown;
                 }
 
             }
@@ -81,6 +92,43 @@ Rectangle {
             ]
 
         }
+
+        Image {
+            id: configureButton
+            source: "/images/configure.svg"
+            sourceSize.width: 60
+            sourceSize.height: 60
+            width: 60
+            height: 60
+            x: parent.width-width-quitButton.width-aboutButton.width
+            y: 0
+            z: 9
+
+            MouseArea {
+                id: configureButtonMouseArea
+                anchors.fill: parent
+                hoverEnabled: true
+                onClicked: {
+                    configure.shown = !configure.shown;
+                }
+
+            }
+            states: [
+                State {
+                    name: "Hovered"; when: configureButtonMouseArea.containsMouse
+                    PropertyChanges { target: configureButton; sourceSize.width: 72; sourceSize.height:72; scale: 1.2;}
+                }
+            ]
+
+
+            transitions: [
+                Transition {
+                    NumberAnimation { properties: "scale"; duration: 1000; easing.type: Easing.OutElastic }
+                }
+            ]
+
+        }
+
 
         Image {
             id: quitButton
