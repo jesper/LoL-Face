@@ -7,6 +7,7 @@
         <file>happy.svg</file>
         <file>neutral.svg</file>
         <file>configure.svg</file>
+        <file>add.svg</file>
     </qresource>
     <qresource prefix="/qml">
         <file>view.qml</file>

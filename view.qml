@@ -15,14 +15,12 @@ Rectangle {
         State {
             name: "AboutVisible"; when: about.shown
             PropertyChanges { target: imageGrid; enabled: false }
-            PropertyChanges { target: configure; shown: false }
             PropertyChanges { target: about; opacity: 0.8}
 
         },
         State {
             name: "ConfigureVisible"; when: configure.shown
             PropertyChanges { target: imageGrid; enabled: false }
-            PropertyChanges { target: about; shown: false }
             PropertyChanges { target: configure; opacity: 0.8}
         }
     ]
@@ -41,6 +39,7 @@ Rectangle {
 
     Configure {
         id:configure
+        shown: true
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
     }
@@ -77,6 +76,7 @@ Rectangle {
                 hoverEnabled: true
                 onClicked: {
                     about.shown = !about.shown;
+                    configure.shown = false;
                 }
 
             }
@@ -113,6 +113,7 @@ Rectangle {
                 hoverEnabled: true
                 onClicked: {
                     configure.shown = !configure.shown;
+                    about.shown = false;
                 }
 
             }

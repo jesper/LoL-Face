@@ -30,7 +30,7 @@ Rectangle {
             y: 10
             color: "white"
             font.pointSize: 20
-            text: "TITLE HERE"
+            text: ""
         }
 
         Text {
@@ -44,7 +44,7 @@ Rectangle {
             color: "white"
             wrapMode: Text.WordWrap
             font.pointSize: 11
-            text: "CONTENT HERE"
+            text: ""
         }
 
         Rectangle {
