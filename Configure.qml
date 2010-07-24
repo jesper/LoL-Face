@@ -35,28 +35,38 @@ Dialog {
             Image {
                 id:addTriggerImage
                 source: "/images/add.svg"
-                sourceSize.width: 50
-                sourceSize.height: 50
-                width: 50
-                height: 50
-                x: triggerInput.x + triggerInput.width
+                sourceSize.width: 25
+                sourceSize.height: 25
+                width: 25
+                height: 25
+                x: triggerInput.x + triggerInput.width + 5
 
                 MouseArea {
                     id: addTriggerImageMouseArea
                     anchors.fill: parent
                     hoverEnabled: true
+
+                    onPressed: {
+                        parent.scale = 1.5
+                        triggerInput.text = ""
+                    }
+
+                    onReleased: {
+                        parent.scale = 1
+                    }
                 }
+
                 states: [
                     State {
                         name: "Hovered"; when: addTriggerImageMouseArea.containsMouse
-                        PropertyChanges { target: addTriggerImage; sourceSize.width: 72; sourceSize.height:72; scale: 1.2;}
+                        PropertyChanges { target: addTriggerImage; sourceSize.width: 30; sourceSize.height:30; scale: 1.2;}
                     }
                 ]
 
 
                 transitions: [
                     Transition {
-                        NumberAnimation { properties: "scale"; duration: 1000; easing.type: Easing.OutElastic }
+                        NumberAnimation { properties: "scale"; duration: 200; easing.type: Easing.InOutQuad }
                     }
                 ]
             }
