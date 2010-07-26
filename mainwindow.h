@@ -31,6 +31,7 @@ public:
 public slots:
     //Needed to be able to quit from QML. Qt.quit() doesn't seem to work.
     void quit();
+    void addTrigger(QString trigger);
 
 protected:
     void closeEvent(QCloseEvent *closeEvent);
@@ -41,6 +42,8 @@ private:
     void webcamSnapshot(const QString path);
     void showSysTrayUsage();
     void populateImageModel();
+    void populateTriggerModel();
+    void saveTriggerModel();
 
 private slots:
     void keylogger_keypress(QString key);
@@ -58,6 +61,8 @@ private:
     QDeclarativeView *m_qmlView;
     QDeclarativeContext *m_qmlContext;
     QStandardItemModel *m_imageModel;
+    QStandardItemModel *m_triggerModel;
+
 
 };
 

@@ -25,12 +25,17 @@ MainWindow::MainWindow(QWidget *parent)
     m_imageModel = new QStandardItemModel(this);
     populateImageModel();
 
+    m_triggerModel = new QStandardItemModel(this);
+    populateTriggerModel();
+
     setFixedSize(800, 600);
 
     m_qmlView = new QDeclarativeView(this);
 
     m_qmlContext = m_qmlView->rootContext();
     m_qmlContext->setContextProperty("imageModel", m_imageModel);
+    m_qmlContext->setContextProperty("triggerModel", m_triggerModel);
+
     m_qmlContext->setContextProperty("cplusplus", this);
     m_qmlView->setSource(QUrl("qrc:qml/view.qml"));
 
@@ -65,6 +70,41 @@ void MainWindow::sysTrayClicked()
 void MainWindow::quit()
 {
     QCoreApplication::exit(0);
+}
+
+void MainWindow::addTrigger(QString trigger)
+{
+    if (trigger.isEmpty())
+        return;
+
+    for (int i=0; i < m_triggerModel->rowCount(); ++i)
+    {
+        if (m_triggerModel->item(i)->text() == trigger)
+            return;
+    }
+
+    m_triggerModel->appendRow(new QStandardItem(trigger));
+    saveTriggerModel();
+}
+
+void MainWindow::saveTriggerModel()
+{
+    QStringList triggers;
+
+    for (int i=0; i < m_triggerModel->rowCount(); ++i)
+        triggers.append(m_triggerModel->item(i)->text());
+
+    QSettings settings;
+    settings.setValue("triggers", triggers);
+}
+
+void MainWindow::populateTriggerModel()
+{
+    QSettings settings;
+    QStringList triggers = settings.value("triggers", "lol").toStringList();
+
+    for (int i=0; i < triggers.size(); ++i)
+        m_triggerModel->appendRow(new QStandardItem(triggers.at(i)));
 }
 
 void MainWindow::populateImageModel()
@@ -135,6 +175,12 @@ void MainWindow::keylogger_keypress(QString key)
     if (m_logged.length() > 10)
         m_logged.remove(0, m_logged.length()-10);
 
-    if (m_logged.toUpper().endsWith("LOL"))
-        lolFace();
+    for (int i=0; i < m_triggerModel->rowCount(); ++i)
+    {
+        if (m_logged.toUpper().endsWith(m_triggerModel->item(i)->text().toUpper()))
+        {
+            lolFace();
+            m_logged.clear();
+        }
+    }
 }

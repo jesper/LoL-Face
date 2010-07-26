@@ -48,6 +48,7 @@ Dialog {
 
                     onPressed: {
                         parent.scale = 1.5
+                        cplusplus.addTrigger(triggerInput.text)
                         triggerInput.text = ""
                     }
 
@@ -71,9 +72,30 @@ Dialog {
                 ]
             }
         }
-        Text {
-            y: 100
-            text: "QML ROX MY SOX"
+
+        ListView {
+            y: triggerInput.height + 10
+            width: parent.width
+            height: 200
+
+            model: triggerModel
+            delegate: triggerDelegate
+
+            Rectangle {
+                anchors.fill: parent
+                color: "white"
+                z: parent.z - 1
+            }
+        }
+
+
+        Component {
+            id: triggerDelegate;
+            Text {
+                color: "green"
+                text: display + "!"
+            }
+
         }
     }
 }
