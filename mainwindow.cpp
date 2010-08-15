@@ -87,6 +87,19 @@ void MainWindow::addTrigger(QString trigger)
     saveTriggerModel();
 }
 
+void MainWindow::removeTrigger(QString trigger)
+{
+    for (int i=0; i < m_triggerModel->rowCount(); ++i)
+    {
+        if (m_triggerModel->item(i)->text() == trigger)
+        {
+            m_triggerModel->removeRow(i);
+            saveTriggerModel();
+            return;
+        }
+    }
+}
+
 void MainWindow::saveTriggerModel()
 {
     QStringList triggers;

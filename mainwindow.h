@@ -32,6 +32,7 @@ public slots:
     //Needed to be able to quit from QML. Qt.quit() doesn't seem to work.
     void quit();
     void addTrigger(QString trigger);
+    void removeTrigger(QString trigger);
 
 protected:
     void closeEvent(QCloseEvent *closeEvent);

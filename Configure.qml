@@ -81,21 +81,77 @@ Dialog {
             model: triggerModel
             delegate: triggerDelegate
 
-            Rectangle {
-                anchors.fill: parent
-                color: "white"
-                z: parent.z - 1
-            }
+
         }
 
 
         Component {
             id: triggerDelegate;
-            Text {
-                color: "green"
-                text: display + "!"
-            }
 
+            Rectangle {
+                color: "transparent"
+                width: triggerDelegateBox.width + 5
+                height: triggerDelegateBox.height + 5
+
+
+                Rectangle {
+                    id: triggerDelegateBox
+                    color: "blue"
+                    width: triggerDelegateText.width + 5
+                    height: triggerDelegateText.height + 5
+
+                    Text {
+                        id: triggerDelegateText
+                        color: "white"
+                        font.pointSize: 12
+                        text: display
+                    }
+
+                    Image {
+                        id: triggerDelegateRemoveImage
+                        x: triggerDelegateText.width + 10
+                        source: "/images/remove.svg"
+                        sourceSize.width: 20
+                        sourceSize.height: 20
+                        width: 20
+                        height: 20
+
+                        MouseArea {
+
+                            id: triggerDelegateRemoveMouseArea
+                            hoverEnabled: true
+
+                            anchors.fill: parent
+
+                            onPressed: {
+                                parent.scale = 1.5
+                                console.log("Deleting:" + triggerDelegateText.text)
+                                cplusplus.removeTrigger(triggerDelegateText.text)
+                            }
+
+                            onReleased: {
+                                parent.scale = 1
+                            }
+
+
+                            states: [
+                                State {
+                                    name: "Hovered"; when: triggerDelegateRemoveMouseArea.containsMouse
+                                    PropertyChanges { target: triggerDelegateRemoveImage; sourceSize.width: 24; sourceSize.height:24; scale: 1.2;}
+                                }
+                            ]
+
+
+                            transitions: [
+                                Transition {
+                                    NumberAnimation { properties: "scale"; duration: 200; easing.type: Easing.InOutQuad }
+                                }
+                            ]
+                        }
+                    }
+
+                }
+            }
         }
     }
 }
