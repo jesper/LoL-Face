@@ -99,7 +99,8 @@ Dialog {
                     color: "blue"
                     width: triggerDelegateText.width + 5
                     height: triggerDelegateText.height + 5
-
+                    radius: 3
+                    anchors.margins:4
                     Text {
                         id: triggerDelegateText
                         color: "white"

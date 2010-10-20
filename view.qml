@@ -52,11 +52,17 @@ Rectangle {
         z: 8
 
         gradient: Gradient {
-
             GradientStop { position: 0; color: "darkgrey" }
             GradientStop { position: 0.95; color: "grey" }
             GradientStop { position: 1.1; color: "darkgrey" }
+        }
 
+        Rectangle {
+            color: "darkgrey"
+            y: parent.height-1
+            width: parent.width
+            x: 0
+            height: 1
         }
 
         Image {

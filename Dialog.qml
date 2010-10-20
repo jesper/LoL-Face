@@ -59,6 +59,7 @@ Rectangle {
                 x: (parent.width - width) / 2
                 text: "Close"
                 font.pointSize: 16
+                smooth: true
             }
 
             MouseArea {
